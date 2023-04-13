@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MovieList.Models.Person>
+﻿@model IEnumerable<MovieList.Models.ToWatchMovieList>
 
 @{
     ViewBag.Title = "Index";
@@ -12,13 +12,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.MoviesTags)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Birthday)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Tags)
+            @Html.DisplayNameFor(model => model.MovieIds)
         </th>
         <th></th>
     </tr>
@@ -26,13 +23,10 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)
+            @Html.DisplayFor(modelItem => item.MoviesTags)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Birthday)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tags)
+            @Html.DisplayFor(modelItem => item.MovieIds)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

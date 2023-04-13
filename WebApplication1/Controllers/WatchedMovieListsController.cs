@@ -11,107 +11,107 @@ using MovieList.Models;
 
 namespace WebApplication1.Controllers
 {
-    public class PeopleController : Controller
+    public class WatchedMovieListsController : Controller
     {
         private ProjectContext db = new ProjectContext();
 
-        // GET: People
+        // GET: WatchedMovieLists
         public ActionResult Index()
         {
-            return View(db.people.ToList());
+            return View(db.watchedMovieLists.ToList());
         }
 
-        // GET: People/Details/5
+        // GET: WatchedMovieLists/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Person person = db.people.Find(id);
-            if (person == null)
+            WatchedMovieList watchedMovieList = db.watchedMovieLists.Find(id);
+            if (watchedMovieList == null)
             {
                 return HttpNotFound();
             }
-            return View(person);
+            return View(watchedMovieList);
         }
 
-        // GET: People/Create
+        // GET: WatchedMovieLists/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: People/Create
+        // POST: WatchedMovieLists/Create
         // Para proteger-se contra ataques de excesso de postagem, ative as propriedades específicas às quais deseja se associar. 
         // Para obter mais detalhes, confira https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Birthday,Tags")] Person person)
+        public ActionResult Create([Bind(Include = "Id,MoviesIds")] WatchedMovieList watchedMovieList)
         {
             if (ModelState.IsValid)
             {
-                db.people.Add(person);
+                db.watchedMovieLists.Add(watchedMovieList);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(person);
+            return View(watchedMovieList);
         }
 
-        // GET: People/Edit/5
+        // GET: WatchedMovieLists/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Person person = db.people.Find(id);
-            if (person == null)
+            WatchedMovieList watchedMovieList = db.watchedMovieLists.Find(id);
+            if (watchedMovieList == null)
             {
                 return HttpNotFound();
             }
-            return View(person);
+            return View(watchedMovieList);
         }
 
-        // POST: People/Edit/5
+        // POST: WatchedMovieLists/Edit/5
         // Para proteger-se contra ataques de excesso de postagem, ative as propriedades específicas às quais deseja se associar. 
         // Para obter mais detalhes, confira https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Birthday,Tags")] Person person)
+        public ActionResult Edit([Bind(Include = "Id,MoviesIds")] WatchedMovieList watchedMovieList)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(person).State = EntityState.Modified;
+                db.Entry(watchedMovieList).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(person);
+            return View(watchedMovieList);
         }
 
-        // GET: People/Delete/5
+        // GET: WatchedMovieLists/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Person person = db.people.Find(id);
-            if (person == null)
+            WatchedMovieList watchedMovieList = db.watchedMovieLists.Find(id);
+            if (watchedMovieList == null)
             {
                 return HttpNotFound();
             }
-            return View(person);
+            return View(watchedMovieList);
         }
 
-        // POST: People/Delete/5
+        // POST: WatchedMovieLists/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Person person = db.people.Find(id);
-            db.people.Remove(person);
+            WatchedMovieList watchedMovieList = db.watchedMovieLists.Find(id);
+            db.watchedMovieLists.Remove(watchedMovieList);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

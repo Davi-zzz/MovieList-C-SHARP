@@ -3,31 +3,85 @@
 }
 
 <main>
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="title">ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
+    <section class="row w-100" aria-labelledby="aspnetTitle">
+        @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { @class = "form-inline w-100" }))
+        {
+            <div class="d-flex flex-wrap w-100">
+                <h2 style="margin-right: 16px;">Buscar Filme</h2>
+                <div class="form-group flex-grow-1">
+                    <input type="text" name="searchString" class="form-control w-100" placeholder="Pesquisar" style="width: 100%; max-width: 100%; margin-right: 16px">
+                </div>
+                <button type="submit" class="btn btn-primary flex-shrink-0 ml-2" style="margin-left: 16px;">Buscar</button>
+            </div>
+        }
     </section>
 
+
+
     <div class="row">
-        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-            <h2 id="gettingStartedTitle">Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="librariesTitle">
-            <h2 id="librariesTitle">Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="hostingTitle">
-            <h2 id="hostingTitle">Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        <section class="col-sm" aria-labelledby="Filmes">
+            <div class="container">
+                <div class="row">
+                    @foreach (var item in ViewBag.results)
+                    {
+                        <div class="col-sm-6 col-md-4 col-lg-3">
+                            <div class="card-deck">
+                                <div class="card w-80 h-80 m-3" style="width: 18rem;">
+                                    @{
+                                        if (@item.imageAddress != null)
+                                        {
+                                            <img class="card-img-top" src="@item.imageAddress" alt="movie banner">
+                                        }
+                                        else
+                                        {
+                                            <img class="card-img-top" src="~/Content/movie-banner.jpg" alt="movie banner" />
+                                        }
+                                    }
+                                <div class="card-body">
+                                    @*//trocar o id*@
+
+
+                                    <h5 class="card-title">@item.title</h5>
+                                    <p class="card-text">@item.description</p>
+                                    <p class="card-text">@item.releaseYear</p>
+                                    <input type="hidden" name="" class="form-control w-100" placeholder="Pesquisar" style="width: 100%; max-width: 100%; margin-right: 16px">
+                                    <button type="submit" class="btn btn-primary flex-shrink-0 ml-2" style="margin-left: 16px;">Buscar</button>
+                                    @using (Ajax.BeginForm("AddToWatched", "Home", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "" }))
+                                    {
+                                        if (ViewBag.mvl != null)
+                                        {
+                                            <div class="dropdown">
+                                                <button type="submit" class="btn btn-success flex-shrink-0 ml-2" style="margin-left: 16px;">Assistido</button>
+                                            </div>
+                                        }
+                                    }
+                                    @using (Ajax.BeginForm("AddToWatch", "Home", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "" }))
+                                    { 
+                                    if (ViewBag.tmvl != null)
+                                    {
+                                            <div class="dropdown">
+                                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    Para Assistir
+                                                </a>
+
+                                                <ul class="dropdown-menu">
+                                                    @foreach (var mvl in ViewBag.tmvl)
+                                                    {
+                                                        <li><a class="dropdown-item" href="#">Action</a></li>
+
+                                                    }
+                                                </ul>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
         </section>
     </div>
 </main>

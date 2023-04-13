@@ -1,14 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+
 public enum FavoriteTags
 {
     ACAO,
     AVENTURA,
     COMEDIA,
     CHANCHADA,
-    COMEDIA_DE_ACAO,
-    COMEDIA_DE_TERROR,
-    COMEDIA_DRAMATICA,
-    COMEDIA_ROMANTICA,
     DANCA,
     DOCUMENTARIO,
     DOCUFICCAO,
@@ -16,11 +14,8 @@ public enum FavoriteTags
     ESPIONAGEM,
     FAROESTE,
     FANTASIA,
-    FANTASIA_CIENTIFICA,
     FICCAO_CIENTIFICA,
-    FILMES_COM_TRUQUES,
     FILMES_DE_GUERRA,
-    MISTERIO_MUSICAL,
     FILME_POLICIAL,
     ROMANCE,
     TERROR,
@@ -33,4 +28,12 @@ public enum Awards
     MASTERPIECE,
     ATORES_SUPIMPAS,
     TECNICAS_DE_FILMAGEM_INCRIVEIS,
+}
+
+public enum APIOperation
+{
+    LIST,
+    SEARCH_BY_TITLE,
+    SEARCH_BY_ID,
+    PAGINATE,
 }

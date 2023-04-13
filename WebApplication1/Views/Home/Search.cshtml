@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Resultados da busca</h2>
+
+<main>
+    <div class="row">
+        <section class="col-sm" aria-labelledby="Filmes">
+            <div class="container">
+                <div class="row">
+                    @{
+                        if (ViewBag.results != null)
+                        {
+                            <h4> pagina: @ViewBag.page</h4>
+                            foreach (var item in ViewBag.results)
+                            {
+                                <div class="col-sm-6 col-md-4 col-lg-3">
+                                    <div class="card-deck">
+
+                                        <div class="card w-80 h-80 m-3" style="width: 18rem;">
+                                            @{
+                                                if (@item.imageAddress != null)
+                                                {
+                                                    <img class="card-img-top" src="@item.imageAddress" alt="movie banner">
+                                                }
+                                                else
+                                                {
+                                                    <img class="card-img-top" src="~/Content/movie-banner.jpg" alt="movie banner" />
+                                                }
+                                            }
+                                            <div class="card-body">
+                                                <h5 class="card-title">@item.title</h5>
+                                                <p class="card-text">@item.description</p>
+                                                <p class="card-text">@item.releaseYear</p>
+                                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            <form method="get" action="@Url.Action("Search", "Home")">
+                                <input type="hidden" name="pageUrl" value="@ViewBag.nextPageUrl" />
+                                <button type="submit" class="btn btn-primary">Próximo</button>
+                            </form>
+                        }
+                    }
+                    <h3> @ViewBag.Message </h3>
+                    @Html.ActionLink("Voltar ao início", "Index", "Home", new { area = "" }, new { @class = "btn btn-primary" })
+                </div>
+            </div>
+        </section>
+    </div>
+</main>

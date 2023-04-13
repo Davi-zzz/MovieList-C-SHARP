@@ -7,7 +7,7 @@ namespace MovieList.Models
 {
     public class ToWatchMovieList
     {
-        public ToWatchMovieList(string[] movieIds, FavoriteTags[] moviesTags)
+        public ToWatchMovieList(string movieIds, string moviesTags)
         {
             this.movieIds = movieIds;
             this.moviesTags = moviesTags;
@@ -19,11 +19,11 @@ namespace MovieList.Models
 
         public int Id { get; set; }
 
-        private string[] movieIds;
+        private string movieIds;
 
-        private FavoriteTags[] moviesTags;
+        private string moviesTags;
 
-        public FavoriteTags[] MoviesTags { get => moviesTags; set => moviesTags = value; }
-        public string[] MovieIds { get => movieIds; set => movieIds = value; }
+        public string MoviesTags { get => moviesTags; set => moviesTags = value; }
+        public string MovieIds { get => movieIds; set => movieIds = value; }
     }
 }

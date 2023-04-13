@@ -8,7 +8,7 @@ namespace MovieList.Models
     public class WatchedMovieList
     {
 
-        public WatchedMovieList(string[] moviesIds)
+        public WatchedMovieList(string moviesIds)
         {
             this.moviesIds = moviesIds;
         }
@@ -19,8 +19,8 @@ namespace MovieList.Models
 
         public int Id { get; set; }
 
-        private string[] moviesIds;
+        private string moviesIds;
 
-        public string[] MoviesIds { get => moviesIds; set => moviesIds = value; }
+        public string MoviesIds { get => moviesIds; set => moviesIds = value; }
     }
 }

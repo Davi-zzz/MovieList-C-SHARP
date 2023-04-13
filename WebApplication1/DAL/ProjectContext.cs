@@ -1,4 +1,4 @@
-﻿using MovieList.Models;
+using MovieList.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Metadata.Edm;
